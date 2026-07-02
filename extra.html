@@ -73,18 +73,18 @@
       line-height: 1.5;
     }
 
-    /* SISTEMA DE PESTAÑAS (TABS) CON CSS PURO */
+   
     .tabs-container {
       display: flex;
       flex-direction: column;
     }
 
-    /* Ocultar inputs de control */
+
     .tab-input {
       display: none;
     }
 
-    /* Barra de navegación de Grados */
+   
     .tabs-nav {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
@@ -114,13 +114,13 @@
       background: rgba(0,0,0,0.05);
     }
 
-    /* Contenedores de contenido de cada grado */
+  
     .tab-panel {
       display: none;
       animation: fadeIn 0.3s ease-in-out forwards;
     }
 
-    /* Activación de pestañas y estilos de botones activos */
+
     #tab1:checked ~ .tabs-nav .lbl1 { background: #ff6b81; color: white; border: 3px solid #1a1a1a; box-shadow: 3px 3px 0px #1a1a1a; }
     #tab2:checked ~ .tabs-nav .lbl2 { background: #b388ff; color: white; border: 3px solid #1a1a1a; box-shadow: 3px 3px 0px #1a1a1a; }
     #tab3:checked ~ .tabs-nav .lbl3 { background: #ff9f43; color: white; border: 3px solid #1a1a1a; box-shadow: 3px 3px 0px #1a1a1a; }
@@ -128,7 +128,7 @@
     #tab5:checked ~ .tabs-nav .lbl5 { background: #26de81; color: white; border: 3px solid #1a1a1a; box-shadow: 3px 3px 0px #1a1a1a; }
     #tab6:checked ~ .tabs-nav .lbl6 { background: #fd9644; color: white; border: 3px solid #1a1a1a; box-shadow: 3px 3px 0px #1a1a1a; }
 
-    /* Mostrar panel correspondiente */
+  
     #tab1:checked ~ .tabs-content #panel1 { display: block; }
     #tab2:checked ~ .tabs-content #panel2 { display: block; }
     #tab3:checked ~ .tabs-content #panel3 { display: block; }
@@ -136,7 +136,7 @@
     #tab5:checked ~ .tabs-content #panel5 { display: block; }
     #tab6:checked ~ .tabs-content #panel6 { display: block; }
 
-    /* ESTRUCTURA INTERNA DE CONTENIDOS */
+
     .campos-container {
       display: flex;
       flex-direction: column;
@@ -235,7 +235,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* RESPONSIVE DESIGN */
+   
     @media (max-width: 768px) {
       .tabs-nav { grid-template-columns: repeat(3, 1fr); gap: 8px; }
       .links-grid { grid-template-columns: 1fr; }
@@ -261,7 +261,6 @@
 
     <div class="tabs-container">
       
-      <!-- Inputs de Control Ocultos -->
       <input type="radio" name="grades" id="tab1" class="tab-input" checked>
       <input type="radio" name="grades" id="tab2" class="tab-input">
       <input type="radio" name="grades" id="tab3" class="tab-input">
@@ -269,7 +268,7 @@
       <input type="radio" name="grades" id="tab5" class="tab-input">
       <input type="radio" name="grades" id="tab6" class="tab-input">
 
-      <!-- Menú de pestañas adaptativas -->
+    
       <nav class="tabs-nav">
         <label for="tab1" class="tab-label lbl1">1° Grado</label>
         <label for="tab2" class="tab-label lbl2">2° Grado</label>
@@ -279,10 +278,10 @@
         <label for="tab6" class="tab-label lbl6">6° Grado</label>
       </nav>
 
-      <!-- Contenidos de las pestañas -->
+      
       <div class="tabs-content">
         
-        <!-- PANEL 1° GRADO -->
+      
         <section id="panel1" class="tab-panel">
           <div class="campos-container">
             <div class="campo-card">
@@ -304,7 +303,7 @@
           </div>
         </section>
 
-        <!-- PANEL 2° GRADO -->
+     
         <section id="panel2" class="tab-panel">
           <div class="campos-container">
             <div class="campo-card">
@@ -332,7 +331,7 @@
           </div>
         </section>
 
-        <!-- PANEL 3° GRADO -->
+  
         <section id="panel3" class="tab-panel">
           <div class="campos-container">
             <div class="campo-card">
@@ -373,7 +372,6 @@
           </div>
         </section>
 
-        <!-- PANEL 4° GRADO -->
         <section id="panel4" class="tab-panel">
           <div class="campos-container">
             <div class="campo-card">
@@ -407,7 +405,7 @@
           </div>
         </section>
 
-        <!-- PANEL 5° GRADO -->
+       
         <section id="panel5" class="tab-panel">
           <div class="campos-container">
             <div class="campo-card">
@@ -436,7 +434,7 @@
           </div>
         </section>
 
-        <!-- PANEL 6° GRADO -->
+        
         <section id="panel6" class="tab-panel">
           <div class="campos-container">
             <div class="campo-card">
@@ -470,7 +468,7 @@
       </div>
     </div>
 
-    <!-- BOTÓN VOLVER -->
+   
     <div class="back-container">
       <a href="index.html" class="back-btn">
         ⬅️ Volver al Inicio
