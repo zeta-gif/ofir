@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Integrantes del Equipo</title>
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Rubik+Mono+One&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Fredoka', sans-serif;
+      background-color: #ffde59;
+      background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.04) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.04) 2px, transparent 2px);
+      background-size: 40px 40px;
+      background-position: center;
+      color: #1a1a1a;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 16px;
+      overflow-x: hidden;
+    }
+
+    .comic-box {
+      background: #ffffff;
+      width: 100%;
+      max-width: 850px;
+      padding: 55px 45px;
+      border-radius: 32px;
+      border: 5px solid #1a1a1a;
+      box-shadow: 12px 12px 0px #1a1a1a;
+      position: relative;
+      transform: rotate(0.8deg);
+    }
+
+    .badge-sticker {
+      position: absolute;
+      top: -25px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-3deg);
+      background: #ff9f43;
+      color: #1a1a1a;
+      padding: 10px 24px;
+      font-family: 'Rubik Mono One', monospace;
+      font-size: 1.1rem;
+      border: 4px solid #1a1a1a;
+      border-radius: 16px;
+      box-shadow: 5px 5px 0px #1a1a1a;
+    }
+
+    h1 {
+      font-family: 'Rubik Mono One', monospace;
+      font-size: clamp(1.5rem, 5vw, 2.2rem);
+      color: #1a1a1a;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      color: #4a4a4a;
+      font-weight: 600;
+      max-width: 550px;
+      margin: 0 auto 40px;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    .member-card {
+      background: #ffffff;
+      border: 4px solid #1a1a1a;
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 8px 8px 0px #1a1a1a;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      transition: transform 0.2s ease;
+    }
+
+    .member-card:hover {
+      transform: scale(1.02) translateY(-2px);
+    }
+
+    .avatar-sphere {
+      width: 64px;
+      height: 64px;
+      border: 3px solid #1a1a1a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      flex-shrink: 0;
+      box-shadow: 3px 3px 0px #1a1a1a;
+    }
+
+    .member-card:nth-child(1) .avatar-sphere { background: #b388ff; }
+    .member-card:nth-child(2) .avatar-sphere { background: #26de81; }
+    .member-card:nth-child(3) .avatar-sphere { background: #ff6b81; }
+    .member-card:nth-child(4) .avatar-sphere { background: #45aaf2; }
+    .member-card:nth-child(5) .avatar-sphere { background: #ffbe76; }
+    .member-card:nth-child(6) .avatar-sphere { background: #badc58; }
+    .member-card:nth-child(7) .avatar-sphere { background: #ff7675; }
+    .member-card:nth-child(8) .avatar-sphere { background: #74b9ff; }
+
+    .member-info {
+      text-align: left;
+    }
+
+    .member-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      line-height: 1.3;
+    }
+
+    .back-container {
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 32px;
+      background: #ff5757;
+      color: white;
+      text-decoration: none;
+      border-radius: 20px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      border: 4px solid #1a1a1a;
+      box-shadow: 6px 6px 0px #1a1a1a;
+      transition: all 0.15s ease-out;
+    }
+
+    .back-btn:hover {
+      transform: scale(1.03) translateY(-2px);
+    }
+
+    .back-btn:active {
+      transform: translateY(6px) translateX(6px);
+      box-shadow: 0px 0px 0px #1a1a1a;
+    }
+
+    @media (max-width: 680px) {
+      body { padding: 30px 12px; }
+      .comic-box { padding: 45px 20px; border-radius: 24px; transform: none; }
+      .badge-sticker { font-size: 0.9rem; padding: 8px 18px; width: 85%; text-align: center; }
+      h1 { font-size: 1.4rem; margin-top: 20px; }
+      .subtitle { font-size: 1.1rem; margin-bottom: 30px; }
+      .team-grid { grid-template-columns: 1fr; gap: 20px; }
+      .member-card { padding: 18px; }
+      .member-name { font-size: 1.15rem; }
+      .avatar-sphere { width: 54px; height: 54px; font-size: 1.6rem; }
+      .back-btn { width: 100%; padding: 15px; font-size: 1.15rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="comic-box">
+    
+    <div class="badge-sticker">NUESTRO EQUIPO</div>
+
+    <h1>INTEGRANTES DEL EQUIPO</h1>
+    <p class="subtitle">Este proyecto estuvo a cargo de:</p>
+
+    <div class="team-grid">
+      
+      <div class="member-card">
+        <div class="avatar-sphere">👩‍🏫</div>
+        <div class="member-info">
+          <div class="member-name">Sonia Jhoana Hernández Islas</div>
+        </div>
+      </div>
+
+      <div class="member-card">
+        <div class="avatar-sphere">🧑‍💻</div>
+        <div class="member-info">
+          <div class="member-name">Jatniel Ofir Cerecedo Jiménez</div>
+        </div>
+      </div>
+
+      <div class="member-card">
+        <div class="avatar-sphere">🧑‍🏫</div>
+        <div class="member-info">
+          <div class="member-name">Ricardo Márquez Morales</div>
+        </div>
+      </div>
+
+      <div class="member-card">
+        <div class="avatar-sphere">🚀</div>
+        <div class="member-info">
+          <div class="member-name">Isaac Pedro Domínguez González</div>
+        </div>
+      </div>
+      
+      <div class="member-card">
+        <div class="avatar-sphere">🧑‍💻</div>
+        <div class="member-info">
+          <div class="member-name">Alexis Mata Montaño</div>
+        </div>
+      </div>
+      
+      <div class="member-card">
+        <div class="avatar-sphere">👩‍🎨</div>
+        <div class="member-info">
+          <div class="member-name">David Velasco Nachito</div>
+        </div>
+      </div>
+
+      <div class="member-card">
+        <div class="avatar-sphere">🚀</div>
+        <div class="member-info">
+          <div class="member-name">Aldo Eduardo Gamero Breltrán</div>
+        </div>
+      </div>
+      
+      <div class="member-card">
+        <div class="avatar-sphere">👩‍🎨</div>
+        <div class="member-info">
+          <div class="member-name">Luis Fernando Morales Olguin</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="back-container">
+      <a href="index.html" class="back-btn">
+        ⬅️ Volver al Inicio
+      </a>
+    </div>
+
+  </main>
+
+</body>
+</html>

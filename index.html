@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Entornos Virtuales de Aprendizaje</title>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght=600;700&family=Rubik+Mono+One&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Fredoka', sans-serif;
+      background-color: #ffde59;
+      background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.04) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.04) 2px, transparent 2px);
+      background-size: 40px 40px;
+      background-position: center;
+      color: #1a1a1a;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 16px;
+      overflow-x: hidden;
+    }
+
+    .comic-box {
+      background: #ffffff;
+      width: 100%;
+      max-width: 800px;
+      padding: 55px 45px;
+      border-radius: 32px;
+      border: 5px solid #1a1a1a;
+      box-shadow: 12px 12px 0px #1a1a1a;
+      text-align: center;
+      position: relative;
+      transform: rotate(-1deg);
+    }
+
+    .badge-sticker {
+      position: absolute;
+      top: -25px;
+      left: 50%;
+      transform: translateX(-50%) rotate(3deg);
+      background: #ff5757;
+      color: white;
+      padding: 10px 24px;
+      font-family: 'Rubik Mono One', monospace;
+      font-size: 1.1rem;
+      border: 4px solid #1a1a1a;
+      border-radius: 16px;
+      box-shadow: 5px 5px 0px #1a1a1a;
+    }
+
+    h1 {
+      font-family: 'Rubik Mono One', monospace;
+      font-size: clamp(1.8rem, 6vw, 2.8rem);
+      color: #1a1a1a;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      line-height: 1.2;
+      word-spacing: -5px;
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      color: #4a4a4a;
+      font-weight: 600;
+      max-width: 550px;
+      margin: 0 auto 45px;
+      line-height: 1.4;
+    }
+
+    .blocks-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    .block-btn {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 24px 28px;
+      color: #1a1a1a;
+      text-decoration: none;
+      border-radius: 24px;
+      font-size: 1.25rem; 
+      font-weight: 700;
+      border: 4px solid #1a1a1a;
+      position: relative;
+      transition: all 0.15s ease-out;
+    }
+
+    .icon-sphere {
+      width: 54px;
+      height: 54px;
+      background: #ffffff;
+      border: 3px solid #1a1a1a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin-right: 18px;
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+
+    .btn-datos { 
+      background: #b388ff; 
+      box-shadow: 8px 8px 0px #1a1a1a;
+      transform: rotate(1deg);
+    }
+    
+    .btn-juegos { 
+      background: #26de81; 
+      box-shadow: 8px 8px 0px #1a1a1a;
+      transform: rotate(-1deg);
+    }
+
+    .btn-extra { 
+      background: #ff6b81; 
+      box-shadow: 8px 8px 0px #1a1a1a;
+      transform: rotate(0.5deg);
+    }
+
+    .btn-creditos { 
+      background: #ff9f43; 
+      box-shadow: 8px 8px 0px #1a1a1a;
+      transform: rotate(-1.5deg);
+    }
+    
+    .block-btn:hover {
+      transform: scale(1.02) translateY(-2px);
+    }
+    
+    .block-btn:hover .icon-sphere {
+      transform: scale(1.1) rotate(15deg);
+    }
+
+    .block-btn:active {
+      transform: translateY(6px) translateX(6px) rotate(0deg) !important;
+      box-shadow: 2px 2px 0px #1a1a1a;
+    }
+
+    @media (max-width: 680px) {
+      body { padding: 30px 12px; }
+      .comic-box { padding: 45px 20px; border-radius: 24px; transform: none; }
+      .badge-sticker { font-size: 0.9rem; padding: 8px 18px; width: 85%; text-align: center; }
+      h1 { font-size: 1.6rem; margin-top: 20px; }
+      .subtitle { font-size: 1.1rem; margin-bottom: 35px; }
+      .blocks-grid { grid-template-columns: 1fr; gap: 20px; }
+      .block-btn { padding: 18px 20px; font-size: 1.2rem; border-radius: 20px; transform: none !important; }
+      .icon-sphere { width: 46px; height: 46px; font-size: 1.5rem; margin-right: 14px; }
+    }
+	
+	
+	
+	.pdf-card-btn {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #ff5757; 
+  color: white;
+  text-decoration: none;
+  padding: 20px;
+  border: 4px solid #1a1a1a;
+  border-radius: 20px;
+  box-shadow: 6px 6px 0px #1a1a1a;
+  transition: all 0.15s ease;
+  margin-top: 30px; 
+  text-align: left;
+}
+
+.pdf-card-btn:hover {
+  transform: scale(1.02) translateY(-3px);
+  box-shadow: 8px 8px 0px #1a1a1a;
+  background: #ff4747;
+}
+
+.pdf-card-btn:active {
+  transform: translateY(6px) translateX(6px);
+  box-shadow: 0px 0px 0px #1a1a1a;
+}
+
+.pdf-icon {
+  font-size: 2.5rem;
+  background: #ffffff;
+  padding: 10px;
+  border: 3px solid #1a1a1a;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pdf-text h3 {
+  font-family: 'Rubik Mono One', monospace;
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+  color: white;
+}
+
+.pdf-text p {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+	
+	
+	
+  </style>
+</head>
+<body>
+
+  <main class="comic-box">
+    
+    <div class="badge-sticker">¡HOLA Y BIENVENIDO!</div>
+
+    <h1>¡VAMOS A APRENDER!</h1>
+    <p class="subtitle">Presiona cualquiera de los bloques de colores y descubre un mundo lleno de diversión.</p>
+
+    <div class="blocks-grid">
+      
+      <a href="datos.html" class="block-btn btn-datos">
+        <div class="icon-sphere">✨</div>
+        Datos del proyecto
+      </a>
+
+      <a href="juegos.html" class="block-btn btn-juegos">
+        <div class="icon-sphere">🎮</div>
+        Juegos creados
+      </a>
+
+      <a href="extra.html" class="block-btn btn-extra">
+        <div class="icon-sphere">🚀</div>
+        ¡Más de 100 juegos y recursos educativos listos para empezar!
+      </a>
+      
+      <a href="creditos.html" class="block-btn btn-creditos">
+        <div class="icon-sphere">👥</div>
+        Nombre de los integrantes del equipo
+      </a>
+
+    </div>
+
+<a href="planeaciones.pdf" target="_blank" class="pdf-card-btn">
+  <span class="pdf-icon">📂</span>
+  <div class="pdf-text">
+    <h3>Ver PDF de actividades para sesiones</h3>
+    <p>Descarga o consulta el PDF</p>
+  </div>
+</a>
+
+
+  </main>
+
+</body>
+</html>

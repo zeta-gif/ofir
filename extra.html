@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juegos Educativos Interactivos</title>
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Rubik+Mono+One&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Fredoka', sans-serif;
+      background-color: #ffde59;
+      background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.03) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.03) 2px, transparent 2px);
+      background-size: 30px 30px;
+      color: #1a1a1a;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 20px;
+    }
+
+    .comic-box {
+      background: #ffffff;
+      width: 100%;
+      max-width: 950px;
+      padding: 50px 40px;
+      border-radius: 32px;
+      border: 5px solid #1a1a1a;
+      box-shadow: 12px 12px 0px #1a1a1a;
+      position: relative;
+    }
+
+    .badge-sticker {
+      position: absolute;
+      top: -22px;
+      left: 50%;
+      transform: translateX(-50%) rotate(1.5deg);
+      background: #26de81;
+      color: #1a1a1a;
+      padding: 10px 26px;
+      font-family: 'Rubik Mono One', monospace;
+      font-size: 1.1rem;
+      border: 4px solid #1a1a1a;
+      border-radius: 16px;
+      box-shadow: 5px 5px 0px #1a1a1a;
+    }
+
+    h1 {
+      font-family: 'Rubik Mono One', monospace;
+      font-size: clamp(1.6rem, 4.5vw, 2.2rem);
+      margin-top: 15px;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: #555;
+      font-weight: 600;
+      max-width: 650px;
+      margin: 0 auto 40px;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    /* SISTEMA DE PESTAÑAS (TABS) CON CSS PURO */
+    .tabs-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Ocultar inputs de control */
+    .tab-input {
+      display: none;
+    }
+
+    /* Barra de navegación de Grados */
+    .tabs-nav {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      margin-bottom: 35px;
+      background: #f1f2f6;
+      padding: 8px;
+      border: 4px solid #1a1a1a;
+      border-radius: 20px;
+    }
+
+    .tab-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 10px;
+      background: transparent;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: 700;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .tab-label:hover {
+      background: rgba(0,0,0,0.05);
+    }
+
+    /* Contenedores de contenido de cada grado */
+    .tab-panel {
+      display: none;
+      animation: fadeIn 0.3s ease-in-out forwards;
+    }
+
+    /* Activación de pestañas y estilos de botones activos */
+    #tab1:checked ~ .tabs-nav .lbl1 { background: #ff6b81; color: white; border: 3px solid #1a1a1a; box-shadow: 3px 3px 0px #1a1a1a; }
+    #tab2:checked ~ .tabs-nav .lbl2 { background: #b388ff; color: white; border: 3px solid #1a1a1a; box-shadow: 3px 3px 0px #1a1a1a; }
+    #tab3:checked ~ .tabs-nav .lbl3 { background: #ff9f43; color: white; border: 3px solid #1a1a1a; box-shadow: 3px 3px 0px #1a1a1a; }
+    #tab4:checked ~ .tabs-nav .lbl4 { background: #45aaf2; color: white; border: 3px solid #1a1a1a; box-shadow: 3px 3px 0px #1a1a1a; }
+    #tab5:checked ~ .tabs-nav .lbl5 { background: #26de81; color: white; border: 3px solid #1a1a1a; box-shadow: 3px 3px 0px #1a1a1a; }
+    #tab6:checked ~ .tabs-nav .lbl6 { background: #fd9644; color: white; border: 3px solid #1a1a1a; box-shadow: 3px 3px 0px #1a1a1a; }
+
+    /* Mostrar panel correspondiente */
+    #tab1:checked ~ .tabs-content #panel1 { display: block; }
+    #tab2:checked ~ .tabs-content #panel2 { display: block; }
+    #tab3:checked ~ .tabs-content #panel3 { display: block; }
+    #tab4:checked ~ .tabs-content #panel4 { display: block; }
+    #tab5:checked ~ .tabs-content #panel5 { display: block; }
+    #tab6:checked ~ .tabs-content #panel6 { display: block; }
+
+    /* ESTRUCTURA INTERNA DE CONTENIDOS */
+    .campos-container {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .campo-card {
+      background: #ffffff;
+      border: 4px solid #1a1a1a;
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 6px 6px 0px #1a1a1a;
+    }
+
+    .campo-header {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 8px;
+      border-bottom: 3px dashed #e0e0e0;
+    }
+
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .game-btn {
+      display: flex;
+      align-items: center;
+      padding: 14px 18px;
+      background: #fafafa;
+      border: 3px solid #1a1a1a;
+      border-radius: 14px;
+      color: #1a1a1a;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 600;
+      box-shadow: 4px 4px 0px #1a1a1a;
+      transition: all 0.1s ease;
+    }
+
+    .game-btn:hover {
+      transform: scale(1.02) translateY(-2px);
+      background: #fffbeb;
+      box-shadow: 5px 5px 0px #1a1a1a;
+    }
+
+    .game-btn:active {
+      transform: translateY(4px) translateX(4px);
+      box-shadow: 0px 0px 0px #1a1a1a;
+    }
+
+    .game-btn::before {
+      content: "🕹️";
+      margin-right: 12px;
+      font-size: 1.2rem;
+    }
+
+    .back-container {
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 36px;
+      background: #ff5757;
+      color: white;
+      text-decoration: none;
+      border-radius: 18px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border: 4px solid #1a1a1a;
+      box-shadow: 6px 6px 0px #1a1a1a;
+      transition: all 0.15s ease;
+    }
+
+    .back-btn:hover {
+      transform: scale(1.03) translateY(-2px);
+    }
+
+    .back-btn:active {
+      transform: translateY(6px) translateX(6px);
+      box-shadow: 0px 0px 0px #1a1a1a;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 768px) {
+      .tabs-nav { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .links-grid { grid-template-columns: 1fr; }
+      .comic-box { padding: 45px 20px; }
+    }
+
+    @media (max-width: 480px) {
+      .tabs-nav { grid-template-columns: repeat(2, 1fr); }
+      .tab-label { font-size: 1rem; padding: 12px 6px; }
+      .campo-card { padding: 20px 16px; }
+      .campo-header { font-size: 1.15rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="comic-box">
+    
+    <div class="badge-sticker">¡A JUGAR!</div>
+
+    <h1>JUEGOS EDUCATIVOS</h1>
+    <p class="subtitle">Selecciona el grado escolar en las pestañas para explorar sus actividades organizadas por campos formativos.</p>
+
+    <div class="tabs-container">
+      
+      <!-- Inputs de Control Ocultos -->
+      <input type="radio" name="grades" id="tab1" class="tab-input" checked>
+      <input type="radio" name="grades" id="tab2" class="tab-input">
+      <input type="radio" name="grades" id="tab3" class="tab-input">
+      <input type="radio" name="grades" id="tab4" class="tab-input">
+      <input type="radio" name="grades" id="tab5" class="tab-input">
+      <input type="radio" name="grades" id="tab6" class="tab-input">
+
+      <!-- Menú de pestañas adaptativas -->
+      <nav class="tabs-nav">
+        <label for="tab1" class="tab-label lbl1">1° Grado</label>
+        <label for="tab2" class="tab-label lbl2">2° Grado</label>
+        <label for="tab3" class="tab-label lbl3">3° Grado</label>
+        <label for="tab4" class="tab-label lbl4">4° Grado</label>
+        <label for="tab5" class="tab-label lbl5">5° Grado</label>
+        <label for="tab6" class="tab-label lbl6">6° Grado</label>
+      </nav>
+
+      <!-- Contenidos de las pestañas -->
+      <div class="tabs-content">
+        
+        <!-- PANEL 1° GRADO -->
+        <section id="panel1" class="tab-panel">
+          <div class="campos-container">
+            <div class="campo-card">
+              <div class="campo-header">🗣️ Lenguajes</div>
+              <div class="links-grid">
+                <a href="https://www.mundoprimaria.com/juegos-educativos/lengua-lit-1-2?path=juegos-premium/9906" target="_blank" class="game-btn">Comprensión de Lectura Literaria</a>
+                <a href="https://www.mundoprimaria.com/juegos-educativos/lengua-voc-1-3?path=juegos-premium/4973" target="_blank" class="game-btn">Vocabulario Básico I</a>
+                <a href="https://www.mundoprimaria.com/juegos-educativos/lengua-voc-1-4?path=juegos-premium/5073" target="_blank" class="game-btn">Vocabulario Básico II</a>
+              </div>
+            </div>
+            <div class="campo-card">
+              <div class="campo-header">🧠 Saberes y Pensamiento Científico</div>
+              <div class="links-grid">
+                <a href="https://www.mundoprimaria.com/juegos-educativos/juegos-de-sumas-sin-llevadas?path=juegos-premium/4286" target="_blank" class="game-btn">Iniciación a las Sumas Simples</a>
+                <a href="http://www.pipoclub.com/juegos-para-ninos-gratis/juego-nubes-2.html" target="_blank" class="game-btn">Juego de las Nubes</a>
+                <a href="http://www.pipoclub.com/juegos-para-ninos-gratis/juego-medusas-2.html" target="_blank" class="game-btn">Juego de las Medusas</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PANEL 2° GRADO -->
+        <section id="panel2" class="tab-panel">
+          <div class="campos-container">
+            <div class="campo-card">
+              <div class="campo-header">🗣️ Lenguajes</div>
+              <div class="links-grid">
+                <a href="https://www.mundoprimaria.com/juegos-educativos/lengua-voc-2-1?path=juegos-premium/5940" target="_blank" class="game-btn">Desarrollo de Vocabulario II</a>
+                <a href="https://www.mundoprimaria.com/juegos-educativos/lengua-voc-2-4?path=juegos-premium/6007" target="_blank" class="game-btn">Ejercicios de Léxico Estructurado</a>
+              </div>
+            </div>
+            <div class="campo-card">
+              <div class="campo-header">❤️ De lo Humano y lo Comunitario</div>
+              <div class="links-grid">
+                <a href="https://es.educaplay.com/recursos-educativos/16645571-emociones.html" target="_blank" class="game-btn">Test de las Emociones</a>
+                <a href="https://es.educaplay.com/recursos-educativos/27876077-emociones_2_grado.html" target="_blank" class="game-btn">Froggy Jumps: Identifica Emociones</a>
+                <a href="https://es.educaplay.com/recursos-educativos/27900239-emociones_para_2_grado.html" target="_blank" class="game-btn">Froggy Jumps: Reconociendo Estados</a>
+                <a href="https://es.educaplay.com/recursos-educativos/8541597-emociones_2.html" target="_blank" class="game-btn">Cuestionario: Mis Emociones II</a>
+                <a href="https://es.educaplay.com/recursos-educativos/4982900-las_emociones.html" target="_blank" class="game-btn">Sopa de Letras de Emociones</a>
+                <a href="https://www.educaplay.com/learning-resources/23187998-las_emociones.html" target="_blank" class="game-btn">Froggy Jumps: Expresión Emocional</a>
+                <a href="https://www.educaplay.com/learning-resources/13113281-emociones.html" target="_blank" class="game-btn">Relacionar Parejas Emocionales</a>
+                <a href="https://es.educaplay.com/recursos-educativos/27641150-las_emociones.html" target="_blank" class="game-btn">Froggy Jumps: Gestión y Calma</a>
+                <a href="https://es.educaplay.com/recursos-educativos/9930889-emociones.html" target="_blank" class="game-btn">Video Quiz de las Emociones</a>
+                <a href="https://es.educaplay.com/recursos-educativos/10912975-las_emociones.html" target="_blank" class="game-btn">Memory: Parejas de Monstruos</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PANEL 3° GRADO -->
+        <section id="panel3" class="tab-panel">
+          <div class="campos-container">
+            <div class="campo-card">
+              <div class="campo-header">🧠 Saberes y Pensamiento Científico</div>
+              <div class="links-grid">
+                <a href="https://www.cristic.com/multiplicacion-espacial-canva/" target="_blank" class="game-btn">Multiplicación Espacial</a>
+                <a href="https://www.cristic.com/salta-y-calcula-canva-calculo-mental/" target="_blank" class="game-btn">Salta y Calcula: Cálculo Mental</a>
+                <a href="https://www.cristic.com/partido-de-sumas-mundial-canva/" target="_blank" class="game-btn">Partido de Sumas Mundial</a>
+                <a href="https://genially.com/es/plantilla/operaciones-matematicas/?te=A" target="_blank" class="game-btn">Genially: Operaciones Matemáticas</a>
+              </div>
+            </div>
+            <div class="campo-card">
+              <div class="campo-header">🌍 Ética, Naturaleza y Sociedades</div>
+              <div class="links-grid">
+                <a href="https://www.educaplay.com/learning-resources/29722341-estados_de_la_materia.html" target="_blank" class="game-btn">Estados de la Materia</a>
+                <a href="https://www.educaplay.com/learning-resources/29722325-ecosistemas.html" target="_blank" class="game-btn">Los Ecosistemas</a>
+                <a href="https://www.educaplay.com/learning-resources/29722150-sistema_solar.html" target="_blank" class="game-btn">El Sistema Solar</a>
+                <a href="https://wordwall.net/resource/115410461" target="_blank" class="game-btn">Desafío Wordwall I</a>
+                <a href="https://wordwall.net/resource/115410564" target="_blank" class="game-btn">Desafío Wordwall II</a>
+                <a href="https://wordwall.net/resource/115410660" target="_blank" class="game-btn">Desafío Wordwall III</a>
+              </div>
+            </div>
+            <div class="campo-card">
+              <div class="campo-header">❤️ De lo Humano y lo Comunitario</div>
+              <div class="links-grid">
+                <a href="https://www.cristic.com/aprende-las-emociones-canva/" target="_blank" class="game-btn">Aprende las Emociones</a>
+                <a href="https://www.cristic.com/circulo-de-la-empatia-canva/" target="_blank" class="game-btn">Círculo de la Empatía</a>
+                <a href="https://www.cristic.com/atrapa-el-residuo/" target="_blank" class="game-btn">Atrapa el Residuo</a>
+                <a href="https://www.cristic.com/juego-limpio/" target="_blank" class="game-btn">Juego Limpio</a>
+                <a href="https://www.cristic.com/valores-en-el-deporte/" target="_blank" class="game-btn">Valores en el Deporte</a>
+                <a href="https://www.cristic.com/colorea-el-verano-canva/" target="_blank" class="game-btn">Colorea el Verano</a>
+                <a href="https://www.cristic.com/pasapalabra-del-verano/" target="_blank" class="game-btn">Pasapalabra Estival</a>
+                <a href="https://dashboard.blooket.com/set/6a3b727657555072c41987c7" target="_blank" class="game-btn">Blooket Trivia Emocional I</a>
+                <a href="https://dashboard.blooket.com/set/6a3b7511d89acf7d4f1830d5" target="_blank" class="game-btn">Blooket Trivia Emocional II</a>
+                <a href="https://dashboard.blooket.com/set/6a3b75c46b6af5e7a31d5b89" target="_blank" class="game-btn">Blooket Trivia Emocional III</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PANEL 4° GRADO -->
+        <section id="panel4" class="tab-panel">
+          <div class="campos-container">
+            <div class="campo-card">
+              <div class="campo-header">❤️ De lo Humano y lo Comunitario</div>
+              <div class="links-grid">
+                <a href="https://www.cristic.com/mi-circulo-de-control-canva/" target="_blank" class="game-btn">Mi Círculo de Control</a>
+                <a href="https://www.cristic.com/circulo-de-la-empatia-canva/" target="_blank" class="game-btn">Círculo de la Empatía Colectiva</a>
+                <a href="https://www.cristic.com/detectives-emocionales-canva/" target="_blank" class="game-btn">Detectives Emocionales</a>
+                <a href="https://www.cristic.com/aprende-las-emociones-canva/" target="_blank" class="game-btn">Reconocimiento Emocional</a>
+                <a href="https://www.cristic.com/memory-de-emociones-canva/" target="_blank" class="game-btn">Memory de Emociones</a>
+                <a href="https://www.cristic.com/exploring-feelings/" target="_blank" class="game-btn">Exploring Feelings</a>
+                <a href="https://www.cristic.com/feelings-sentimientos/" target="_blank" class="game-btn">Feelings y Sentimientos</a>
+                <a href="https://www.cristic.com/emociones-desagradables-2/" target="_blank" class="game-btn">Manejo de Emociones Críticas</a>
+                <a href="https://www.cristic.com/miedo-rabia-y-tristeza/" target="_blank" class="game-btn">Afrontando Miedo, Rabia y Tristeza</a>
+                <a href="https://www.cristic.com/emociones-agradables/" target="_blank" class="game-btn">Potenciando Emociones Agradables</a>
+                <a href="https://www.cristic.com/emociones-basicas/" target="_blank" class="game-btn">Las Emociones Básicas</a>
+                <a href="https://www.cristic.com/emociones-agradables-gestion-emocional/" target="_blank" class="game-btn">Gestión de Emociones Positivas</a>
+                <a href="https://www.cristic.com/emociones-desagradables-iii/" target="_blank" class="game-btn">Regulación Emocional III</a>
+                <a href="https://www.cristic.com/emociones-desagradables-ii/" target="_blank" class="game-btn">Regulación Emocional II</a>
+                <a href="https://www.cristic.com/emociones-desagradables-i/" target="_blank" class="game-btn">Regulación Emocional I</a>
+                <a href="https://www.cristic.com/emociones-y-gestion-emocional/" target="_blank" class="game-btn">Técnicas de Autocontrol</a>
+                <a href="https://www.cristic.com/feelings/" target="_blank" class="game-btn">Feelings Interactive Game</a>
+              </div>
+            </div>
+            <div class="campo-card">
+              <div class="campo-header">🌍 Ética, Naturaleza y Sociedades</div>
+              <div class="links-grid">
+                <a href="https://www.educaplay.com/learning-resources/29486098-semaforo_de_la_paz_y_el_dialogo.html" target="_blank" class="game-btn">Semáforo de la Paz y el Diálogo</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PANEL 5° GRADO -->
+        <section id="panel5" class="tab-panel">
+          <div class="campos-container">
+            <div class="campo-card">
+              <div class="campo-header">❤️ De lo Humano y lo Comunitario</div>
+              <div class="links-grid">
+                <a href="https://es.educaplay.com/recursos-educativos/19361266-emociones_para_quinto_grado.html" target="_blank" class="game-btn">Competencias Emocionales 5°</a>
+                <a href="https://es.educaplay.com/recursos-educativos/27870787-emociones_en_5to_grado.html" target="_blank" class="game-btn">Froggy Jumps: Inteligencia Emocional</a>
+                <a href="https://es.educaplay.com/recursos-educativos/25701367-gestion_de_emociones_para_grado_quinto.html" target="_blank" class="game-btn">Sí o No: Resolución de Conflictos</a>
+                <a href="https://www.educaplay.com/learning-resources/28672818-las_emociones.html" target="_blank" class="game-btn">Froggy Jumps: Las Emociones</a>
+                <a href="https://es.educaplay.com/recursos-educativos/14851919-emociones.html" target="_blank" class="game-btn">Sopa de Letras Emocionales (D)</a>
+                <a href="https://es.educaplay.com/recursos-educativos/6692643-emociones.html" target="_blank" class="game-btn">Sopa de Letras: Vocabulario de Calma</a>
+                <a href="https://es.educaplay.com/recursos-educativos/9118247-conociendo_las_emociones.html" target="_blank" class="game-btn">Relacionar: Empatía y Convivencia</a>
+                <a href="https://es.educaplay.com/recursos-educativos/24388595-las_emociones.html" target="_blank" class="game-btn">Relacionar Grupos de Expresiones</a>
+                <a href="https://es.educaplay.com/recursos-educativos/11054670-mis_emociones.html" target="_blank" class="game-btn">Mapa Interactivo: Geografía Emocional</a>
+                <a href="https://es.educaplay.com/recursos-educativos/11863563-las_emociones.html" target="_blank" class="game-btn">Relacionar Columnas: Conceptos de Paz</a>
+              </div>
+            </div>
+            <div class="campo-card">
+              <div class="campo-header">🌍 Ética, Naturaleza y Sociedades</div>
+              <div class="links-grid">
+                <a href="https://wordwall.net/es/resource/3530520" target="_blank" class="game-btn">Cultura de Paz - Wordwall</a>
+                <a href="https://wordwall.net/es/resource/7596790" target="_blank" class="game-btn">Acuerdos Colectivos y Convivencia</a>
+                <a href="https://www.educaenvivo.com/juegos-educativos-online/la-eleccion/" target="_blank" class="game-btn">La Elección: Dilemas Morales</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PANEL 6° GRADO -->
+        <section id="panel6" class="tab-panel">
+          <div class="campos-container">
+            <div class="campo-card">
+              <div class="campo-header">🧠 Saberes y Pensamiento Científico</div>
+              <div class="links-grid">
+                <a href="https://la.ixl.com/matematicas/6-grado" target="_blank" class="game-btn">Matemáticas Avanzadas IXL</a>
+                <a href="https://www.cristic.com/mundial-de-operaciones-canva/" target="_blank" class="game-btn">Mundial de Operaciones</a>
+                <a href="https://www.cristic.com/dibujo-escondido-operaciones-emoji-2/" target="_blank" class="game-btn">Dibujo Escondido con Emojis</a>
+                <a href="https://www.cristic.com/multiplicaciones-en-el-oceano/" target="_blank" class="game-btn">Multiplicaciones en el Océano</a>
+                <a href="https://es.educaplay.com/recursos-educativos/7046737-funcion_de_la_aldosterona.html" target="_blank" class="game-btn">Naturales: Función de la Aldosterona</a>
+              </div>
+            </div>
+            <div class="campo-card">
+              <div class="campo-header">🗣️ Lenguajes y Destrezas</div>
+              <div class="links-grid">
+                <a href="https://www.cristic.com/juego-de-mecanografia-canva/" target="_blank" class="game-btn">Mecanografía Digital Hágil</a>
+                <a href="https://www.cristic.com/atrapa-las-notas/" target="_blank" class="game-btn">Atrapa las Notas Musicales</a>
+              </div>
+            </div>
+            <div class="campo-card">
+              <div class="campo-header">🌍 Ética, Naturaleza y Sociedades</div>
+              <div class="links-grid">
+                <a href="https://es.educaplay.com/recursos-educativos/4031937-temas_para_analizar_reflexiona.html" target="_blank" class="game-btn">Análisis Crítico y Reflexión</a>
+                <a href="https://es.educaplay.com/recursos-educativos/2921676-rep_nueva_granada_1831_1858.html" target="_blank" class="game-btn">Historia: República de Nueva Granada</a>
+                <a href="https://www.cristic.com/ha-nacido-una-estrella/" target="_blank" class="game-btn">Liderazgo de Pares y Valores</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- BOTÓN VOLVER -->
+    <div class="back-container">
+      <a href="index.html" class="back-btn">
+        ⬅️ Volver al Inicio
+      </a>
+    </div>
+
+  </main>
+
+</body>
+</html>

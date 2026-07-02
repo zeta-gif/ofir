@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Datos del Proyecto</title>
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Rubik+Mono+One&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Fredoka', sans-serif;
+      background-color: #ffde59;
+      background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.04) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.04) 2px, transparent 2px);
+      background-size: 40px 40px;
+      background-position: center;
+      color: #1a1a1a;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 16px;
+      overflow-x: hidden;
+    }
+
+    .comic-box {
+      background: #ffffff;
+      width: 100%;
+      max-width: 800px;
+      padding: 55px 45px;
+      border-radius: 32px;
+      border: 5px solid #1a1a1a;
+      box-shadow: 12px 12px 0px #1a1a1a;
+      position: relative;
+      transform: rotate(0.5deg);
+    }
+
+    .badge-sticker {
+      position: absolute;
+      top: -25px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-2deg);
+      background: #b388ff;
+      color: #1a1a1a;
+      padding: 10px 24px;
+      font-family: 'Rubik Mono One', monospace;
+      font-size: 1.1rem;
+      border: 4px solid #1a1a1a;
+      border-radius: 16px;
+      box-shadow: 5px 5px 0px #1a1a1a;
+    }
+
+    h1 {
+      font-family: 'Rubik Mono One', monospace;
+      font-size: clamp(1.6rem, 5vw, 2.4rem);
+      color: #1a1a1a;
+      margin-top: 15px;
+      margin-bottom: 35px;
+      line-height: 1.2;
+      text-align: center;
+    }
+
+    .info-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      text-align: left;
+    }
+
+    .info-card {
+      background: #ffffff;
+      border: 4px solid #1a1a1a;
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 6px 6px 0px #1a1a1a;
+      transition: transform 0.2s ease;
+    }
+
+    .info-card:hover {
+      transform: scale(1.01) translateY(-2px);
+    }
+
+    .card-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .card-title span {
+      width: 40px;
+      height: 40px;
+      border: 3px solid #1a1a1a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .info-card:nth-child(1) .card-title span { background: #26de81; }
+    .info-card:nth-child(2) .card-title span { background: #ff6b81; }
+    .info-card:nth-child(3) .card-title span { background: #ff9f43; }
+    .info-card:nth-child(4) .card-title span { background: #45aaf2; }
+    .info-card:nth-child(5) .card-title span { background: #a55eea; }
+    .info-card:nth-child(6) .card-title span { background: #ffec3d; }
+
+    .card-text {
+      font-size: 1.15rem;
+      color: #4a4a4a;
+      line-height: 1.6;
+      font-weight: 600;
+    }
+
+    .card-text p {
+      margin-bottom: 12px;
+    }
+
+    .card-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .back-container {
+      margin-top: 45px;
+      text-align: center;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 32px;
+      background: #ff5757;
+      color: white;
+      text-decoration: none;
+      border-radius: 20px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      border: 4px solid #1a1a1a;
+      box-shadow: 6px 6px 0px #1a1a1a;
+      transition: all 0.15s ease-out;
+    }
+
+    .back-btn:hover {
+      transform: scale(1.03) translateY(-2px);
+    }
+
+    .back-btn:active {
+      transform: translateY(6px) translateX(6px);
+      box-shadow: 0px 0px 0px #1a1a1a;
+    }
+
+    @media (max-width: 680px) {
+      body { padding: 30px 12px; }
+      .comic-box { padding: 45px 20px; border-radius: 24px; transform: none; }
+      .badge-sticker { font-size: 0.9rem; padding: 8px 18px; width: 85%; text-align: center; }
+      h1 { font-size: 1.4rem; margin-top: 20px; }
+      .card-title { font-size: 1.2rem; }
+      .card-text { font-size: 1rem; }
+      .back-btn { width: 100%; padding: 15px; font-size: 1.15rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="comic-box">
+    
+    <div class="badge-sticker">INFO GENERAL</div>
+
+    <h1>DATOS DEL PROYECTO</h1>
+
+    <div class="info-layout">
+      
+      <div class="info-card">
+        <div class="card-title">
+          <span>🎯</span> Propósito
+        </div>
+        <div class="card-text">
+          Que los alumnos de primaria desarrollen competencias emocionales, digitales y sociales mediante el uso de herramientas virtuales, para identificar, regular y comunicar sus emociones, con el fin de prevenir la violencia escolar y construir una cultura de paz basada en el diálogo, la empatía y los acuerdos colectivos.
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="card-title">
+          <span>🛠️</span> Objetivo general
+        </div>
+        <div class="card-text">
+          Implementar proyectos virtuales de educación emocional en 3°, 4°, 5° y 6° grado para disminuir la violencia escolar y fortalecer la convivencia sana, a través de la creación de contenidos digitales como audios, videos e infografías que promuevan la autorregulación, la reparación del daño y el liderazgo entre pares.
+        </div>
+      </div>
+      
+      <div class="info-card">
+        <div class="card-title">
+          <span>📋</span> Objetivos específicos
+        </div>
+        <div class="card-text">
+          <p>Identificar, expresar y comunicar las emociones propias y de otros utilizando recursos digitales como emojis, audios y videos, para nombrar estados emocionales que detonan conflictos y evitar reacciones violentas en el aula.</p>
+          <p>Diseñar, producir y difundir contenidos virtuales como podcasts, videocasos y campañas digitales que modelen técnicas de calma y soluciones pacíficas, para que la comunidad escolar tenga herramientas accesibles de autorregulación ante la violencia.</p>
+          <p>Analizar, mediar y evaluar situaciones de violencia escolar mediante encuestas digitales, sociodramas grabados y monitoreo de campañas en línea, para tomar decisiones responsables y reparar el daño desde la empatía y el pensamiento crítico.</p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="card-title">
+          <span>🚀</span> Pertinencia del proyecto
+        </div>
+        <div class="card-text">
+          La violencia escolar es toda acción intencional que daña física, verbal, psicológica o socialmente a un miembro de la comunidad educativa dentro o fuera de la escuela. Según INEGI ENDISE 2024, 1 de cada 3 alumnos de primaria en México ha vivido algún tipo de violencia, siendo la verbal la más frecuente con 68% de los casos. Este problema se agrava por la poca convivencia sana, entendida como la ausencia de relaciones basadas en respeto, diálogo y acuerdos. Cuando los alumnos no identifican ni regulan sus emociones, el conflicto escala a golpes, insultos o exclusión. Autores como Dan Olweus 1993 señalan que la violencia escolar implica desequilibrio de poder y silencio de las víctimas. Por eso es urgente enseñar convivencia como lo propone Rosario Ortega-Ruiz 2003: no evitar el conflicto, sino gestionarlo de forma positiva. La escuela debe formar en inteligencia emocional como indica Daniel Goleman 1995, porque un alumno que no nombra su enojo no puede calmarlo. Este proyecto usa herramientas virtuales para dar voz a todos los monstruos emocionales y reconstruir vínculos sanos.
+        </div>
+      </div>
+      
+      <div class="info-card">
+        <div class="card-title">
+          <span>⚠️</span> Problemáticas
+        </div>
+        <div class="card-text">
+          Las principales problemáticas de la violencia escolar en primaria son seis. Primero, el analfabetismo emocional: los niños pasan del "estoy bien" al golpe porque no reconocen su enojo, miedo o tristeza. Segundo, la normalización: frases como "es de broma" o "así jugamos" ocultan insultos y exclusión. Tercero, la ausencia de protocolos de reparación: ante un conflicto solo hay castigo, no diálogo para entender el daño. Cuarto, la brecha entre casa y escuela: en casa se permite pegar y en la escuela se exige hablar, lo que confunde al alumno. Quinto, el uso no guiado de lo virtual: grupos de WhatsApp sin adultos donde circulan memes y stickers agresivos. Sexto, la falta de habilidades docentes para enseñar a reparar, no solo a sancionar. Alfredo Furlán 2012 afirma que estas problemáticas reflejan vínculos débiles en la comunidad. Cecilia Fierro Evans 2019 agrega que medir convivencia no es contar golpes, sino verificar si hay diálogo y trato respetuoso. Estas problemáticas justifican proyectos que enseñen a nombrar, regular y reparar con apoyo de recursos digitales.
+        </div>
+      </div>
+      
+      <div class="info-card">
+        <div class="card-title">
+          <span>📚</span> Fundamentación
+        </div>
+        <div class="card-text">
+          El tema se sustenta en cinco autores clave. Dan Olweus 1993 definió el bullying como violencia intencional, repetida y con desequilibrio de poder. Su aporte obliga a dar voz a las víctimas para romper el silencio. Rosario Ortega-Ruiz 2003 propone que la convivencia escolar es gestionar positivamente el conflicto, no eliminarlo. Esto fundamenta actividades de mediación y reparación como el "Juzgado de Monstruos". Daniel Goleman 1995 desde la inteligencia emocional explica que sin conciencia emocional no hay autorregulación. Por eso se inicia con identificar el color del monstruo antes de actuar. César Coll 2010 señala que la convivencia se aprende entre iguales, lo que sustenta las brigadas de 6° grado guiando a menores. En México, Alfredo Furlán 2012 ve la violencia como síntoma de vínculos débiles y Cecilia Fierro Evans 2019 plantea la convivencia inclusiva, democrática y pacífica como meta. Ella propone evaluar si hay diálogo y participación, no solo ausencia de golpes. Estos autores coinciden en que la tecnología debe usarse para fortalecer vínculos, no para aislar. Por eso el proyecto integra lo virtual como medio para expresar emociones, difundir técnicas de calma y liderar campañas de paz.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="back-container">
+      <a href="index.html" class="back-btn">
+        ⬅️ Volver al Inicio
+      </a>
+    </div>
+
+  </main>
+
+</body>
+</html>
